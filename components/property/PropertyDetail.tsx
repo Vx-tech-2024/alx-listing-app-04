@@ -1,54 +1,25 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Property } from "../types"; // adjust path if needed
+﻿// components/property/PropertyDetail.tsx
+import ReviewSection from "./ReviewSection";
 
-interface PropertyCardProps {
-  property: Property;
+interface PropertyDetailProps {
+  property: {
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    // ... other property fields
+  };
 }
 
-export default function PropertyCard({ property }: PropertyCardProps) {
+const PropertyDetail = ({ property }: PropertyDetailProps) => {
   return (
-    <View style={styles.card}>
-      <Image
-        source={{ uri: property.image }}
-        style={styles.image}
-      />
-
-      <View style={styles.details}>
-        <Text style={styles.title}>{property.title}</Text>
-        <Text style={styles.location}>{property.location}</Text>
-        <Text style={styles.price}>${property.price}</Text>
-      </View>
-    </View>
+    <div className="container mx-auto px-4 py-8">
+      {/* Property details content */}
+      
+      {/* Include the ReviewSection at the bottom */}
+      <ReviewSection propertyId={property.id} />
+    </div>
   );
-}
+};
 
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    overflow: "hidden",
-    marginBottom: 16,
-  },
-  image: {
-    width: "100%",
-    height: 150,
-  },
-  details: {
-    padding: 10,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "700",
-  },
-  location: {
-    fontSize: 14,
-    color: "gray",
-    marginVertical: 4,
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
-});
-
+export default PropertyDetail;
